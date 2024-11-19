@@ -15,7 +15,7 @@ public class DatabaseManager extends Connected {
             pstmt.setString(2, cognom);
             pstmt.setString(3, correu);
             pstmt.executeUpdate();
-            System.out.println("Client afegit: " + nom + " " + cognom);
+            System.out.println("Client afegit correctament");
         } catch (SQLException e) {
             System.out.println("Error " + e.getMessage());
         }
