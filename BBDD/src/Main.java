@@ -7,7 +7,7 @@ public class Main {
 
         int option;
         do {
-            System.out.println("--- Menú Principal ---");
+            System.out.println("\n--- Menú Principal ---");
             System.out.println("1. Afegir Client");
             System.out.println("2. Llistar Clients");
             System.out.println("3. Actualitzar Client");
@@ -30,8 +30,25 @@ public class Main {
                 case 2:
                     dbManager.listClients();
                     break;
+                case 3:
+                    System.out.print("ID del client: ");
+                    int idUpdate = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Nou nom del client: ");
+                    String newNom = scanner.nextLine();
+                    System.out.print("Nou cognom del client: ");
+                    String newCognom = scanner.nextLine();
+                    System.out.print("Nou correu del client: ");
+                    String newCorreu = scanner.nextLine();
+                    dbManager.updateClient(idUpdate, newNom, newCognom, newCorreu);
+                    break;
+                case 4:
+                    System.out.print("ID del client a eliminar: ");
+                    int idDelete = scanner.nextInt();
+                    dbManager.deleteClient(idDelete);
+                    break;
                 case 0:
-                    System.out.println("Sortint del programa");
+                    System.out.println("Sortint del programa.");
                     break;
                 default:
                     System.out.println("Opció no vàlida. Intenta-ho de nou.");

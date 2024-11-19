@@ -15,12 +15,11 @@ public class DatabaseManager extends Connected {
             pstmt.setString(2, cognom);
             pstmt.setString(3, correu);
             pstmt.executeUpdate();
-            System.out.println("Client afegit correctament: " + nom + " " + cognom);
+            System.out.println("Client afegit: " + nom + " " + cognom);
         } catch (SQLException e) {
             System.out.println("Error " + e.getMessage());
         }
     }
-
 
     public void listClients() {
         String sql = "SELECT * FROM clients";
@@ -38,5 +37,38 @@ public class DatabaseManager extends Connected {
         }
     }
 
+    public void updateClient(int id, String nom, String cognom, String correu) {
+        String sql = "UPDATE clients SET nom = ?, cognom = ?, correu = ? WHERE id = ?";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, nom);
+            pstmt.setString(2, cognom);
+            pstmt.setString(3, correu);
+            pstmt.setInt(4, id);
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Client actualitzat");
+            } else {
+                System.out.println("Client existent");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error " + e.getMessage());
+        }
+    }
 
+    public void deleteClient(int id) {
+        String sql = "DELETE FROM clients WHERE id = ?";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Client eliminat");
+            } else {
+                System.out.println("Error eliminar client");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error " + e.getMessage());
+        }
+    }
 }
