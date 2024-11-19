@@ -7,7 +7,7 @@ public class Main {
 
         int option;
         do {
-            System.out.println("\n--- Menú Principal ---");
+            System.out.println("--- Menú Principal ---");
             System.out.println("1. Afegir Client");
             System.out.println("2. Llistar Clients");
             System.out.println("3. Actualitzar Client");
